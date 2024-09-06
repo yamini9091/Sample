@@ -47,12 +47,12 @@ jobs:
         run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
   
       - name: Build and tag Docker image
-        run: docker build . --file Dockerfile --tag yaminiholla09/CAIS:${{ env.IMAGE_TAG }}
+        run: docker build . --file Dockerfile --tag yaminiholla09/cais:${{ env.IMAGE_TAG }}
   
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: 'docker.io/yaminiholla09/CAIS:${{ env.IMAGE_TAG }}'
+          image-ref: 'docker.io/yaminiholla09/cais:${{ env.IMAGE_TAG }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
@@ -61,19 +61,19 @@ jobs:
   
       - name: Run Docker container
         run: |
-            docker run -d --name yaminiholla09/CAIS:${{ env.IMAGE_TAG }}
+            docker run -d --name yaminiholla09/cais:${{ env.IMAGE_TAG }}
             docker ps
 
       - name: Stop and remove Docker container
         run: |
-            docker stop CAIS
-            docker rm CAIS
+            docker stop cais
+            docker rm cais
       
       - name: List Docker images
         run: docker images
       
       - name: Push Docker image
         run: |
-            docker push yaminiholla09/CAIS:${{ env.IMAGE_TAG }}           
+            docker push yaminiholla09/cais:${{ env.IMAGE_TAG }}           
   
   
