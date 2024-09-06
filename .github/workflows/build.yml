@@ -62,6 +62,7 @@ jobs:
       - name: Run Docker container
         run: |
             docker run -d --name yaminiholla09/cais:${{ env.IMAGE_TAG }}
+            docker run -d --name restapi -p 80:80 -e ENV_VAR=yaminiholla09/cais:${{ env.IMAGE_TAG }}
             docker ps
 
       - name: Stop and remove Docker container
