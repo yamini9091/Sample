@@ -33,4 +33,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           chmod +x rest_api.sh
+          cd restapi ..
           ./rest_api.sh
