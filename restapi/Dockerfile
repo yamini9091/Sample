@@ -7,7 +7,7 @@ RUN useradd -m myuser
 RUN apk add --no-cache curl bash
 
 # Copy the Bash script into the container
-COPY --chown=myuser:myuser rest_api.sh /usr/local/bin/rest_api.sh
+COPY --chown=myuser:myuser restapi/rest_api.sh /usr/local/bin/rest_api.sh
 
 # Make the script executable
 RUN chmod +x /usr/local/bin/rest_api.sh
